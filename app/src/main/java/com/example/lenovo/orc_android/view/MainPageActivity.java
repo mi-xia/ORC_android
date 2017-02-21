@@ -42,7 +42,7 @@ public class MainPageActivity extends Activity implements View.OnClickListener {
 
     private void init() {
         img_test = (ImageView)findViewById(R.id.img_test);
-        mainPagePresenter = new MainPagePresenter();
+        mainPagePresenter = new MainPagePresenter(this);
         btn_start_camera = (Button)findViewById(R.id.btn_start_camera);
         btn_start_camera.setOnClickListener(this);
     }
@@ -73,10 +73,10 @@ public class MainPageActivity extends Activity implements View.OnClickListener {
                 break;
             case crop_code_1:
                 /**
-                 * 启动裁剪程序对照片进行裁剪
+                 * 裁剪完成之后进行反馈
                  */
                 if (resultCode == RESULT_OK){
-                    Bitmap bitmap = mainPagePresenter.showPic(this);
+                    Bitmap bitmap = mainPagePresenter.handle_Pic();
                     img_test.setImageBitmap(bitmap);
                 }
                 break;
